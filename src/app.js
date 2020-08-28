@@ -20,8 +20,10 @@ app.use('/integration', integration);
 app.use('/orders', order);
 
 app.get('/', (req, res) => {
-    res.json({ 
-        data: {
+    res.json({
+        title: "API - Pipedrive e Bling",
+        description: "A API foi desenvolvida para realizar a integração entre duas plataformas - Pipedrive e Bling.",
+        author: {
             nome: "Bruno da Silva Barros",
             email: "brunosilva2365@gmail.com",
             telefone: "(11) 95465-7495"
