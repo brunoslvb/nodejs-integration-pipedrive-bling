@@ -1,27 +1,30 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
 
-const express = require('express');
-const app = express();
+const express   = require('express');
+const app       = express();
 const bodyParser = require('body-parser');
 
 const pipedrive = require('./routes/pipedrive');
-const bling = require('./routes/bling');
-
-// mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_DATABASE_NAME}`, {
-// 	useCreateIndex: true,
-// 	useNewUrlParser: true,
-// 	useUnifiedTopology: true,
-// 	useFindAndModify: false
-// });
+const bling     = require('./routes/bling');
+const integration = require('./routes/integration');
+const order     = require('./routes/order');
 
 app.use(bodyParser.json());
 
 app.use('/pipedrive', pipedrive);
 app.use('/bling', bling);
+app.use('/integration', integration);
+app.use('/orders', order);
 
 app.get('/', (req, res) => {
-    res.json({ message: "Hello World" });
+    res.json({ 
+        data: {
+            nome: "Bruno da Silva Barros",
+            email: "brunosilva2365@gmail.com",
+            telefone: "(11) 95465-7495"
+        }
+    });
 });
 
 app.listen(3333, () => {
