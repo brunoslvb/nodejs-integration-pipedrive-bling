@@ -31,13 +31,6 @@ router.get('/persons', controller.getPersons);
 router.post('/persons', personsPostValidation, controller.postPerson);
 
 
-let productsPostValidation = [
-    check('nome', 'Este campo deve ser preenchido').notEmpty(),
-    check('codigo', 'Este campo deve ser preenchido').notEmpty(),
-    check('preco', 'Este campo deve ser preenchido').notEmpty()
-];
-
 router.get('/products', controller.getProducts);
-router.post('/products', productsPostValidation, controller.postProduct);
 
 module.exports = router;

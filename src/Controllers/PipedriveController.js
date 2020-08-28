@@ -108,36 +108,6 @@ class PipedriveController {
         }
     }
 
-    async postProduct(req, res, next){
-        
-        const schemaErrors = validationResult(req).formatWith(errorFormatter);
-
-        if (!schemaErrors.isEmpty()) {
-            return res.status(400).json({ errors: schemaErrors.mapped() });
-        }
-
-        const { codigo, nome, preco } = req.body;
-
-        const data = {
-            name: nome,
-            code: codigo,
-            prices: [
-                {
-                    currency: "BRL",
-                    price: preco
-                }
-            ]
-        }
-
-        try{
-            await pipedriveRepository.postProduct(data);
-            return res.status(201).json({ message: "Produto inserido com sucesso" });
-        } catch(e) {
-            return res.status(500).json({ message: "Problemas ao processar requisição", data: e });
-        }
-
-    }
-
     async getPersons(req, res, next){
 
         try{
@@ -165,7 +135,7 @@ class PipedriveController {
 
         try{
             let response = await pipedriveRepository.postPerson(data);
-            return res.status(201).json({ message: "Contato adicionado com sucesso" });
+            return res.status(201).json({ message: "Contato adicionado com sucesso", data: { id: response.data.data.id }});
         } catch(e) {
             return res.status(500).json({ message: "Problemas ao processar requisição", data: e });
         }

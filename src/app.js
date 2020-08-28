@@ -3,6 +3,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
 
 const express   = require('express');
 const app       = express();
+const cors      = require('cors');
 const bodyParser = require('body-parser');
 
 const pipedrive = require('./routes/pipedrive');
@@ -10,6 +11,7 @@ const bling     = require('./routes/bling');
 const integration = require('./routes/integration');
 const order     = require('./routes/order');
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/pipedrive', pipedrive);
