@@ -60,17 +60,13 @@ A API foi desenvolvida para realizar a integração entre duas plataformas - Pip
 | Método | ENDPOINT | Informação |
 | ------ | ------ | ------ |
 | GET | /pipedrive/products | Recupera todos os produtos cadastrados na plataforma Pipedrive |
-| | | |
 | GET | /pipedrive/persons | Recupera todos os contatos cadastrados na plataforma Pipedrive |
 | POST | /pipedrive/persons | Insere um contato na plataforma Pipedrive |
-| | | |
 | GET | /pipedrive/deals | Recupera todos os acordos cadastrados na plataforma Pipedrive |
 | POST | /pipedrive/deals | Insere um acordo na plataforma Pipedrive |
 | PUT | /pipedrive/deals/:id | Atualiza o status de um acordo na plataforma Pipedrive |
-| | | |
 | POST | /integration | Insere todos os acordos que estão com status "ganho" na plataforma Pipedrive como pedidos de venda na plataforma Bling, pega todos os pedidos na plataforma Bling e os insere no MongoDB realizando o cálculo total das vendas do dia corrente  |
 | POST | /integration/product | Insere um produto nas duas plataformas |
-| | | |
 | GET | /orders | Recupera todos os pedidos inseridos na Plataforma Bling do MongoDB |
 
 ### Exemplos de requisição
@@ -83,10 +79,16 @@ A API foi desenvolvida para realizar a integração entre duas plataformas - Pip
 | Método | Requisição | Body | Resposta | Status Code |
 | ------ | ------ | ------ | ------ | ------ |
 | POST | /pipedrive/persons | { nome: <string> } | { "message": "Contato adicionado com sucesso", "data": { "id": <id_contato> } } | 201 |
-| | | | | |
 | POST | /pipedrive/deals | {"titulo": <string>, "id_contato": <number>, "status": <string>, "preco_item": <number>, "quantidade_item": <number>, "id_produto": <number>} | {"message": "Acordo inserido com sucesso"} | 201 |
-| | | | | |
 | PUT | /pipedrive/deals/:id | { "status": <string> } | {"message": "Acordo atualizado com sucesso"} | 200 |
-| | | | | |
 | POST | /integration/product | { "nome": <string>, "codigo": <string>, "preco": <number>} | { message: "Produto inserido com sucesso" } | 201 |
-| | | | | |
+| POST | /integration |  | { message: "Integração realizada com sucesso" } | 200 |
+  
+  
+> **Nota: Para a integração ser realizada com sucesso, todos os acordos na plataforma Pipedrive devem conter itens (produtos) associados a ele.**
+
+# Acessos
+
+A aplicação está disponível para acesso no endereço:
+
+- http://54.232.191.37:3333/
